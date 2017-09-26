@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		/*css3*/
+		@font-face {
+			font-family: DigitalDismayFont;
+			src: url( "Digital Dismay.otf" ) format("opentype"); 
+		}
+		body {
+			background-color: #000;
+			margin: 0px;		
+			padding: 0px;
+			overflow: hidden;
+		}
+		#pt{
+			margin: 0px;
+			text-align: center;
+			vertical-align: middle;
+			font-size: 72px;
+			font-family: DigitalDismayFont;
+			color: #ff0000;
+		}
+	</style>
+</head>
+<body>
+
+<p id="pt"></p>
+
+<script>
+var myVar = setInterval( myTimer, 1 );
+function myTimer() {
+    var d = new Date();
+	document.getElementById("pt").innerHTML = setZ_NN(d.getHours()) + ":" + setZ_NN(d.getMinutes()) + ":" + setZ_NN(d.getSeconds()) + ":" + setZ_NNNN(d.getMilliseconds());
+}
+
+function setZ_NN( time ){	
+	if ( time < 10 ){
+		if ( time == 0 ){
+			time = "00";
+		}else{
+			time = "0" + time;
+		}
+	}
+	return time;
+}
+
+function setZ_NNNN( time ){	
+	if ( time < 1000 ){
+		if ( time == 0 ){
+			time = "000";
+		}else{
+			if ( time < 100 ){
+				if ( time < 10 ){
+					time = "00" + time;
+				}else{
+					time = "0" + time;
+				}
+			}else{
+				time = "" + time;
+			}
+		}
+	}
+	return time ;
+}
+
+var we = function(){
+	document.getElementById('pt').style.lineHeight = window.innerHeight + "px";
+	document.getElementById('pt').style.fontSize = window.innerWidth / 6 + "px";
+}
+window.onresize = we;
+window.onload = we;
+</script>
+</body>
+</html>
